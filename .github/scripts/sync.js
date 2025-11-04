@@ -6,6 +6,7 @@ const {
     BOOKSTACK_API_ID, 
     BOOKSTACK_API_SECRET, 
     BOOKSTACK_URL,
+    BOOKSTACK_BOOK_ID,
     ISSUE_TITLE, 
     ISSUE_BODY, 
     ISSUE_NUMBER, 
@@ -37,7 +38,7 @@ const payload = {
     html: htmlContent,
     // ВАЖНО: Укажите реальные ID Книги и Главы!
     // Эти ID должны существовать в вашем BookStack.
-    book_id: testbook,  
+    book_id: BOOKSTACK_BOOK_ID,  
     chapter_id: 1 
 };
 
