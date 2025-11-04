@@ -1,0 +1,44 @@
+name: BookStack KCS Sync
+
+on:
+  issues:
+    types: [opened, edited, closed] # Реагируем на открытие, редактирование и закрытие Issue
+
+jobs:
+  sync_to_bookstack:
+    runs-on: ubuntu-latest
+    
+    # Условный запуск Job только для Issues с меткой 'KCS'
+    if: |
+      github.event_name == 'issues' && 
+      contains(github.event.issue.labels.*.name, 'KCS')
+      
+    steps:
+      # Шаг 1: Проверка репозитория
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Шаг 2: Установка Node.js (для marked)
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      # Шаг 3: Установка библиотеки marked
+      - name: Install marked library
+        run: npm install marked
+
+      # Шаг 4: Главный скрипт обработки и отправки (Node.js)
+      - name: Run Sync Script
+        run: node .github/scripts/sync.js
+        env:
+          # Секреты, настроенные в Задаче 7
+          BOOKSTACK_API_ID: ${{ secrets.BOOKSTACK_API_ID }}
+          BOOKSTACK_API_SECRET: ${{ secrets.BOOKSTACK_API_SECRET }}
+          BOOKSTACK_URL: ${{ secrets.BOOKSTACK_URL }}
+          # Данные Issue для скрипта
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_STATE: ${{ github.event.issue.state }} # open, closed
+          ISSUE_ACTION: ${{ github.event.action }} # opened, edited, closed
