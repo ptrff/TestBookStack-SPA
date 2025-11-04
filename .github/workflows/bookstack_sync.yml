@@ -26,7 +26,7 @@ jobs:
           
       # Шаг 3: Установка библиотеки marked
       - name: Install marked library
-        run: npm install marked
+        run: npm install marked node-fetch
 
       # Шаг 4: Главный скрипт обработки и отправки (Node.js)
       - name: Run Sync Script
