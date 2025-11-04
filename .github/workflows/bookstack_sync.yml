@@ -36,6 +36,7 @@ jobs:
           BOOKSTACK_API_ID: ${{ secrets.BOOKSTACK_API_ID }}
           BOOKSTACK_API_SECRET: ${{ secrets.BOOKSTACK_API_SECRET }}
           BOOKSTACK_URL: ${{ secrets.BOOKSTACK_URL }}
+          BOOKSTACK_BOOK_ID: ${{ secrets.BOOKSTACK_BOOK_ID }}
           # Данные Issue для скрипта
           ISSUE_TITLE: ${{ github.event.issue.title }}
           ISSUE_BODY: ${{ github.event.issue.body }}
