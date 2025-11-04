@@ -1,5 +1,5 @@
 const { marked } = require('marked');
-const fetch = require('node-fetch');
+const fetch = require('node-fetch').default;
 
 // 1. Получение данных из переменных окружения
 const {
