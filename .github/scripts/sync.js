@@ -37,7 +37,7 @@ const payload = {
     html: htmlContent,
     // ВАЖНО: Укажите реальные ID Книги и Главы!
     // Эти ID должны существовать в вашем BookStack.
-    book_id: 1,  
+    book_id: testbook,  
     chapter_id: 1 
 };
 
